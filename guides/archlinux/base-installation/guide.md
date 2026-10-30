@@ -1,4 +1,5 @@
 # Installing Archlinux manually
+One thing before you continue, do not paste the single quotations as it only exists to seperate the commands from the text and the double quotes are for text meant to be pasted into whatever you are doing in the guide.
 
 Flashing Archlinux ISO, the first thing you want to do is install the ISO from
 'https://fastly.mirror.pkgbuild.com/iso/2026.10.01/'.
