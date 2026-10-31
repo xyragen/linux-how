@@ -158,7 +158,7 @@ mkfs.fat -F32 /dev/nvme0n1p1
 then format the root partition by running
 
 ---
-mkfs.ext4 /dev/nvme0np2
+mkfs.ext4 /dev/nvme0n1p2
 ---
 
 and mount the root partition by running
