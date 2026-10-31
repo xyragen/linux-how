@@ -60,15 +60,14 @@ nmtui
 then set your system clock by running
 and set your hostname by running 
 
-
 -----------------
-sgdisk --zap-all
+sgdisk --zap-all # wipes everything off of your drive
 -----------------
 
 and repartition your disks by running 
 
 ---------------------------------------------------------
-cdisk /dev/nvme0n1 # assuming your drive name is nvme0n1
+cfdisk /dev/nvme0n1 # assuming your drive name is nvme0n1
 ---------------------------------------------------------
 
 set the drive label to GPT then make a new label by selecting new and then entering 1G and make the type EFI System and new another new label which you will leave for cfdisk to set everything by default then select write to write the new partition changes to your drive and enter yes not y or anything else and quit.
@@ -265,7 +264,7 @@ then run
 grub-mkconfig -o /boot/grub/grub.cfg
 ---------------------------------------------------------
 
-and make sure that it shows that it added entries for something like vmzlinux because that means grub found your OS
+and make sure that it shows that it added entries for something like vmzlinuz-linux because that means grub found your OS
 
 then run
 
