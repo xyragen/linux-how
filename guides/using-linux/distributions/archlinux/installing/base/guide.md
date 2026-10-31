@@ -48,7 +48,7 @@ to identify your drive name.
 then check your internet connection by running
 
 ---------------------
-ping -c 3 1.1.1
+ping -c 3 1.1.1.1
 ---------------------
 
 if you are connected automatically you are probably means you are using ethernet, but if it doesnt return any packets then connect to your internet by running
@@ -61,7 +61,7 @@ then set your system clock by running
 and set your hostname by running 
 
 -----------------
-sgdisk --zap-all # wipes everything off of your drive
+sgdisk --zap-all /dev/nvme0n1 # wipes everything off of your drive
 -----------------
 
 and repartition your disks by running 
@@ -74,6 +74,7 @@ set the drive label to GPT then make a new label by selecting new and then enter
 
 You will return to the archiso which you will need to partition your drives (this one shows how to partition your drive in btrfs and ext4 after) by running 
 
+### Formatting using BTRFS
 ---------------------------------------------------------
 mkfs.fat -F32 /dev/nvme0n1p1
 ---------------------------------------------------------
@@ -148,7 +149,39 @@ then lastly run
 mount /dev/nvme0n1p1 /mnt/boot
 ---------------------------------------------------------
 
+### Formatting using EXT4
+first run the command below to format your boot partition if you havent already
+---------------------------------------------------------
+mkfs.fat -F32 /dev/nvme0n1p1
+---------------------------------------------------------
+
+then format the root partition by running
+
+---
+mkfs.ext4 /dev/nvme0np2
+---
+
+and mount the root partition by running
+
+---
+mount /dev/nvme0n1p2
+---
+
+and create the boot directory by running 
+
+---
+mkdir -p /mnt/boot
+---
+
+and mount the efi partition by running
+
+---
+mount /dev/nvme0n1p1 /mnt/boot
+---
+
 Once you have finished mounting and that system commands bullshit, install the base system by running 
+
+but dont install btrfs-progs if you chose ext4, its uneeded
 
 ---------------------------------------------------------
 pacstrap -K /mnt base linux linux-firmware btrfs-progs networkmanager sudo nano grub efibootmgr
