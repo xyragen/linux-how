@@ -91,6 +91,12 @@ then create the subvolumes by running
 mount /dev/nvme0n1p2 /mnt
 ---------------------------------------------------------
 
+create the necessary directories 
+
+---------------------------------------------------------
+mkdir -p /mnt/{boot,home,.snapshots}
+---------------------------------------------------------
+
 then 
 
 ---------------------------------------------------------
@@ -123,12 +129,6 @@ and run
 
 ---------------------------------------------------------
 mount -o noatime,compress=zstd,subvol=@ /dev/nvme0n1p2 /mnt
----------------------------------------------------------
-
-after that create the necessary directories by running
-
----------------------------------------------------------
-mkdir -p /mnt/{boot,home,.snapshots}
 ---------------------------------------------------------
 
 and then run
@@ -164,7 +164,7 @@ mkfs.ext4 /dev/nvme0n1p2
 and mount the root partition by running
 
 ---
-mount /dev/nvme0n1p2
+mount /dev/nvme0n1p2 /mnt
 ---
 
 and create the boot directory by running 
@@ -179,12 +179,16 @@ and mount the efi partition by running
 mount /dev/nvme0n1p1 /mnt/boot
 ---
 
-Once you have finished mounting and that system commands bullshit, install the base system by running 
-
-but dont install btrfs-progs if you chose ext4, its uneeded
+Once you have finished mounting and that system commands bullshit, install the base system for btrfs by running 
 
 ---------------------------------------------------------
 pacstrap -K /mnt base linux linux-firmware btrfs-progs networkmanager sudo nano grub efibootmgr
+---------------------------------------------------------
+
+but for ext4 use this command instead (excludes btrfs-progs)
+
+---------------------------------------------------------
+pacstrap -K /mnt base linux linux-firmware networkmanager sudo nano grub efibootmgr
 ---------------------------------------------------------
 
 then generate your filesystem table by running 
