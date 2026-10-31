@@ -58,7 +58,10 @@ nmtui
 ------
 
 then set your system clock by running
-and set your hostname by running 
+
+---
+timedatectl set-ntp true
+---
 
 -----------------
 sgdisk --zap-all /dev/nvme0n1 # wipes everything off of your drive
@@ -280,7 +283,7 @@ EDITOR=nano visudo
 and uncomment
 
 ---------------------------------------------------------
-%wheel ALL=(ALL:ALL) all"
+%wheel ALL=(ALL:ALL) all
 ---------------------------------------------------------
 
 and run
@@ -301,7 +304,7 @@ then run
 grub-mkconfig -o /boot/grub/grub.cfg
 ---------------------------------------------------------
 
-and make sure that it shows that it added entries for something like vmzlinuz-linux because that means grub found your OS
+and make sure that it shows that it added entries for something like vmlinuz-linux because that means grub found your OS
 
 then run
 
